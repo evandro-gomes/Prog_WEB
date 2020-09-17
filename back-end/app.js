@@ -5,13 +5,11 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-//var testeRouter = require('./routes/teste');
 
 const db = require ('./config/database')
 const dbUser = process.env.DB_USER
 const dbPass = process.env.DB_PASS
 const dbName = process.env.DB_NAME  
-//db(`mongodb+srv://${dbUser}:${dbPass}@cluster0.cxhx5.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`)
 db(`mongodb+srv://${dbUser}:${dbPass}@cluster0.cxhx5.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`)
 
 var app = express();
@@ -24,9 +22,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-//app.use('/teste', testeRouter);
 
 const teste = require('./routes/teste')
 app.use('/teste', teste)
+
+const curso = require('./routes/curso')
+app.use('/curso', curso)
 
 module.exports = app;
