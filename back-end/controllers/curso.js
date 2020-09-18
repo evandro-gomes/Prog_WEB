@@ -18,4 +18,31 @@ controller.novo = async (req, res) => {
     }
 }
 
+//Operação RETRIEVE(all)
+controller.listar = async (req, res) => {
+    try{
+    let dados = await Curso.find() //Tras todos os cursos cadastrados
+    res.send(dados) // Vai com status HTTP 200: OK
+    }
+    catch(erro){
+        console.log(erro)
+        res.status(500).send
+    }
+}
+
+//Operação RETRIEVE(one)
+controller.obterUm = async (req, res) => {
+    try{
+        const id = req.params.id
+        let obj = await Curso.findById(id)
+
+        if(obj) res.send(obj)
+        else res.status(404).end()
+    }
+    catch(erro){
+        console.log(erro)
+        res.status(500).send(erro)
+    }
+}
+
 module.exports = controller
