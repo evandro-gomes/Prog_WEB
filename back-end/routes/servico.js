@@ -1,4 +1,4 @@
-const controller = require('../controllers/professor')
+const controller = require('../controllers/servico')
 const express = require('express')
 
 const router = express.Router()

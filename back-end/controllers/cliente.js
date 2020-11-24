@@ -1,19 +1,15 @@
-const Professor = require('../models/Professor')
+const Cliente = require('../models/Cliente')
 
 const controller = {}
 
 //Operação CREATE
 controller.novo = async (req, res) => {
-    //usa os dados que chegam dentro do body da aquisição
-    //e os envia o BD para criação de um novo objeto
     try {
-        await Professor.create(req.body)
-        // HTTP 201: Created
+        await Cliente.create(req.body)
         res.status(201).end()
     }
     catch(erro) {
         console.log(erro)
-        // HTTP 500: Internal Server Error
         res.status(500).send(erro)
     }
 }
@@ -21,8 +17,8 @@ controller.novo = async (req, res) => {
 //Operação RETRIEVE(all)
 controller.listar = async (req, res) => {
     try{
-    let dados = await Professor.find() //Tras todos os cursos cadastrados
-    res.send(dados) // Vai com status HTTP 200: OK
+    let dados = await Cliente.find()
+    res.send(dados)
     }
     catch(erro){
         console.log(erro)
@@ -34,7 +30,7 @@ controller.listar = async (req, res) => {
 controller.obterUm = async (req, res) => {
     try{
         const id = req.params.id
-        let obj = await Professor.findById(id)
+        let obj = await Cliente.findById(id)
 
         if(obj) res.send(obj)
         else res.status(404).end()
@@ -49,7 +45,7 @@ controller.obterUm = async (req, res) => {
 controller.atualizar = async (req, res) =>{
     try{
         const id = req.body._id
-        let ret = await Professor.findByIdAndUpdate(id, req.body)
+        let ret = await Cliente.findByIdAndUpdate(id, req.body)
         
         if(ret) res.status(204).end()
         else res.status(404).end()
@@ -64,7 +60,7 @@ controller.atualizar = async (req, res) =>{
 controller.excluir = async (req, res) =>{
     try{
         const id = req.body._id
-        let ret = await Professor.findByIdAndDelete(id, req.body)
+        let ret = await Cliente.findByIdAndDelete(id, req.body)
         
         if(ret) res.status(204).end()
         else res.status(404).end()

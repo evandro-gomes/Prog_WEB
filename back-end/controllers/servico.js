@@ -1,19 +1,15 @@
-const Turma = require('../models/Turma')
+const Servico = require('../models/Servico')
 
 const controller = {}
 
 //Operação CREATE
 controller.novo = async (req, res) => {
-    //usa os dados que chegam dentro do body da aquisição
-    //e os envia o BD para criação de um novo objeto
     try {
-        await Turma.create(req.body)
-        // HTTP 201: Created
+        await Servico.create(req.body)
         res.status(201).end()
     }
     catch(erro) {
         console.log(erro)
-        // HTTP 500: Internal Server Error
         res.status(500).send(erro)
     }
 }
@@ -21,12 +17,12 @@ controller.novo = async (req, res) => {
 //Operação RETRIEVE(all)
 controller.listar = async (req, res) => {
     try{
-    //Tras todos os cursos cadastrados
-    let dados = await Turma.find()
-        .populate('curso', "nome")
-        .populate('professor')
-        .populate('sala_aula', "nome capacidade")
-    res.send(dados) // Vai com status HTTP 200: OK
+    let dados = await Servico.find()
+        .populate('cliente', "nome")
+        .populate('veiculo')
+        .populate('funcionario', "nome")
+        .populate('peca', "funcao")
+    res.send(dados) 
     }
     catch(erro){
         console.log(erro)
@@ -38,7 +34,7 @@ controller.listar = async (req, res) => {
 controller.obterUm = async (req, res) => {
     try{
         const id = req.params.id
-        let obj = await Turma.findById(id)
+        let obj = await Servico.findById(id)
 
         if(obj) res.send(obj)
         else res.status(404).end()
@@ -53,7 +49,7 @@ controller.obterUm = async (req, res) => {
 controller.atualizar = async (req, res) =>{
     try{
         const id = req.body._id
-        let ret = await Turma.findByIdAndUpdate(id, req.body)
+        let ret = await Servico.findByIdAndUpdate(id, req.body)
         
         if(ret) res.status(204).end()
         else res.status(404).end()
@@ -68,7 +64,7 @@ controller.atualizar = async (req, res) =>{
 controller.excluir = async (req, res) =>{
     try{
         const id = req.body._id
-        let ret = await Turma.findByIdAndDelete(id, req.body)
+        let ret = await Servico.findByIdAndDelete(id, req.body)
         
         if(ret) res.status(204).end()
         else res.status(404).end()
