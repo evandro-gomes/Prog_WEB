@@ -18,7 +18,7 @@ controller.novo = async (req, res) => {
 controller.listar = async (req, res) => {
     try{
     let dados = await Veiculo.find()
-        .populate('cliente')
+        .populate('cliente', 'nome')
     res.send(dados)
     }
     catch(erro){
