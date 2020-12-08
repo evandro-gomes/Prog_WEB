@@ -1,0 +1,48 @@
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+  <mat-form-field>
+    <mat-label>Marca</mat-label>
+    <input matInput placeholder="Informe a marca do veiculo" [(ngModel)]="veiculo.marca" name="marca" required> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Modelo</mat-label>
+    <input matInput placeholder="Informe o modelo do veiculo" [(ngModel)]="veiculo.nome" name="nome" required> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Ano</mat-label>
+    <input matInput placeholder="Informe o ano do veiculo" [(ngModel)]="veiculo.ano" 
+    name="ano" required mask="0000" [dropSpecialCharacters]="false"> 
+  </mat-form-field>
+
+   <mat-form-field>
+    <mat-label>Placa</mat-label>
+    <input matInput placeholder="Informe a placa do veiculo" [(ngModel)]="veiculo.placa" 
+    name="placa" required mask="SSS-0000" [dropSpecialCharacters]="false"> 
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Cliente</mat-label>
+    <mat-select [(ngModel)]="veiculo.cliente" name="cliente" required>
+      <mat-option *ngFor="let cliente of clientes" [value]="cliente._id">
+        {{ cliente.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-toolbar class="form-buttons">      
+    <mat-toolbar-row>         
+      <button mat-raised-button type="submit" color="accent">
+        Salvar         
+      </button>         
+      <button mat-raised-button type="button" (click)="voltar(f)">            
+        Voltar         
+      </button>      
+    </mat-toolbar-row>  
+  </mat-toolbar>
+
+
+</form>

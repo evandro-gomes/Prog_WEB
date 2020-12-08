@@ -1,0 +1,37 @@
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+  <mat-form-field>
+    <mat-label>Marca da peça</mat-label>
+    <input matInput placeholder="Informe a marca da peça" [(ngModel)]="peca.marca" name="marca" required> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Função da peça</mat-label>
+    <input matInput placeholder="Informe a função da peça" [(ngModel)]="peca.funcao" name="funcao" required> 
+  </mat-form-field>
+
+   <mat-form-field>
+    <mat-label>Compatibilidade da peça</mat-label>
+    <input matInput placeholder="Informe quais veículos são  compatíveis com a peça" [(ngModel)]="peca.compat" name="compat" required> 
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Valor da peça</mat-label>
+    <input matInput placeholder="Valor da peça" [(ngModel)]="peca.valor" name="valor" required> 
+  </mat-form-field>
+  
+  <mat-toolbar class="form-buttons">      
+    <mat-toolbar-row>         
+      <button mat-raised-button type="submit" color="accent">
+        Salvar         
+      </button>         
+      <button mat-raised-button type="button" (click)="voltar(f)">            
+        Voltar         
+      </button>      
+    </mat-toolbar-row>  
+  </mat-toolbar>
+
+
+</form>

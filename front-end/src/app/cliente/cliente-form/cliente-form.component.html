@@ -1,0 +1,50 @@
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+  <mat-form-field>
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Informe o nome do cliente" [(ngModel)]="cliente.nome" name="nome" required> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>CPF</mat-label>
+    <input matInput placeholder="Informe o cpf do cliente" [(ngModel)]="cliente.cpf" 
+    name="cpf" required mask="000.000.000-00" [dropSpecialCharacters]="false"> 
+  </mat-form-field>
+
+   <mat-form-field>
+    <mat-label>RG</mat-label>
+    <input matInput placeholder="Informe o rg do cliente" [(ngModel)]="cliente.rg" 
+    name="rg" required mask="00.000.000-0" [dropSpecialCharacters]="false"> 
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Endereço</mat-label>
+    <input matInput placeholder="Informe o endereço do cliente" [(ngModel)]="cliente.endereco" name="endereco" required> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Telefone</mat-label>
+    <input matInput placeholder="Informe o telefone do cliente" [(ngModel)]="cliente.telefone" 
+    name="telefone" required> 
+  </mat-form-field>
+
+   <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Informe o email do cliente" [(ngModel)]="cliente.email" name="email" required> 
+  </mat-form-field>
+  
+  <mat-toolbar class="form-buttons">      
+    <mat-toolbar-row>         
+      <button mat-raised-button type="submit" color="accent">
+        Salvar         
+      </button>         
+      <button mat-raised-button type="button" (click)="voltar(f)">            
+        Voltar         
+      </button>      
+    </mat-toolbar-row>  
+  </mat-toolbar>
+
+
+</form>

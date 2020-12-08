@@ -1,0 +1,86 @@
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+  <mat-form-field>
+    <mat-label>Cliente</mat-label>
+    <mat-select [(ngModel)]="servico.cliente" name="cliente" required>
+      <mat-option *ngFor="let cliente of clientes" [value]="cliente._id">
+        {{ cliente.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Veículo</mat-label>
+    <mat-select [(ngModel)]="servico.veiculo" name="veiculo" required>
+      <mat-option *ngFor="let veiculo of veiculos" [value]="veiculo._id">
+        {{ veiculo.nome }} ({{ veiculo.placa }})
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Funcionário</mat-label>
+    <mat-select [(ngModel)]="servico.funcionario" name="funcionario" required>
+      <mat-option *ngFor="let funcionario of funcionarios" [value]="funcionario._id">
+        {{ funcionario.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Peça</mat-label>
+    <mat-select [(ngModel)]="servico.peca" name="peca" required>
+      <mat-option *ngFor="let peca of pecas" [value]="peca._id">
+        {{ peca.funcao }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Descricao</mat-label>
+    <input matInput placeholder="Dê uma breve descrição do serviço a ser feito" [(ngModel)]="servico.descricao" name="descricao" required> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Data Inicial</mat-label>
+    <input matInput [matDatepicker]="dataInicial" name="data_inicial" 
+      [(ngModel)]="servico.data_inicial" placeholder="Informe a data Inicial" required>
+    <mat-datepicker-toggle matSuffix [for]="dataInicial"></mat-datepicker-toggle>
+    <mat-datepicker #dataInicial></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Data Final</mat-label>
+    <input matInput [matDatepicker]="dataFinal" name="data_final" 
+      [(ngModel)]="servico.data_final" placeholder="Informe a data Inicial" required>
+    <mat-datepicker-toggle matSuffix [for]="dataFinal"></mat-datepicker-toggle>
+    <mat-datepicker #dataFinal></mat-datepicker>
+  </mat-form-field>
+
+   <mat-form-field>
+    <mat-label>Horário Inicial</mat-label>
+    <input matInput placeholder="Informe o horário inicial" [(ngModel)]="servico.hora_inicial" 
+    name="hora_inicial" required mask="00:00" [dropSpecialCharacters]="false"> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Horário Final</mat-label>
+    <input matInput placeholder="Informe o horário final" [(ngModel)]="servico.hora_final" 
+    name="hora_final" required mask="00:00" [dropSpecialCharacters]="false"> 
+  </mat-form-field>
+  
+  <mat-toolbar class="form-buttons">      
+    <mat-toolbar-row>         
+      <button mat-raised-button type="submit" color="accent">
+        Salvar         
+      </button>         
+      <button mat-raised-button type="button" (click)="voltar(f)">            
+        Voltar         
+      </button>      
+    </mat-toolbar-row>  
+  </mat-toolbar>
+
+
+</form>

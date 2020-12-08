@@ -7,6 +7,11 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt);
 
+/***/
+import { MatMomentDateModule, MAT_MOMENT_DATE_FORMATS, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+/***/
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +26,11 @@ import { ClienteListComponent } from './cliente/cliente-list/cliente-list.compon
 import { FuncionarioListComponent } from './funcionario/funcionario-list/funcionario-list.component';
 import { VeiculoListComponent } from './veiculo/veiculo-list/veiculo-list.component';
 import { ServicoListComponent } from './servico/servico-list/servico-list.component';
+import { PecaFormComponent } from './peca/peca-form/peca-form.component';
+import { ClienteFormComponent } from './cliente/cliente-form/cliente-form.component';
+import { FuncionarioFormComponent } from './funcionario/funcionario-form/funcionario-form.component';
+import { ServicoFormComponent } from './servico/servico-form/servico-form.component';
+import { VeiculoFormComponent } from './veiculo/veiculo-form/veiculo-form.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +42,12 @@ import { ServicoListComponent } from './servico/servico-list/servico-list.compon
     ClienteListComponent,
     FuncionarioListComponent,
     VeiculoListComponent,
-    ServicoListComponent
+    ServicoListComponent,
+    PecaFormComponent,
+    ClienteFormComponent,
+    FuncionarioFormComponent,
+    ServicoFormComponent,
+    VeiculoFormComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +56,16 @@ import { ServicoListComponent } from './servico/servico-list/servico-list.compon
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    MatMomentDateModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    /**** Datas em português no MatDatepicker  ****/
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}
+    /**********************************************/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
